@@ -1,1 +1,32 @@
-<p>Home Page Content to be added</p>
+<owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging">
+    @for(item of banner_data; track item.card_logo_image_path) {
+    <ng-container>
+        <ng-template carouselSlide>
+            <div class="banner-slider">
+                <div class="container d-flex align-items-center">
+                    <div class="banner-column w-50">
+                        <div class="banner-title">
+                            <h1>{{item.card_title}}</h1>
+                        </div>
+                        <div class="banner-description">
+                            <p>{{item.card_description}}</p>
+                        </div>
+                        <div class="banner-list">
+                            <ul>
+                                @for(item of item.list; track item) {
+                                <li>{{item}}</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="banner-column w-50">
+                        <div class="banner-image">
+                            <img [src]="item.card_logo_image_path" [alt]="item.card_title">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ng-container>
+    }
+</owl-carousel-o>

@@ -6,7 +6,7 @@
     right: 0;
     height: 90px;
     z-index: 4;
-    background-color: #fff;
+    background-color: var(--white-color);
     box-shadow: 0px 2px 3px rgb(0 0 0 / 8%);
 }
 
@@ -18,38 +18,38 @@
 
 .header-inner {
     justify-content: space-between;
-    background-color: #ffffff;
+    background-color: var(--white-color);
 }
 
 .header-right {
-    width: 40%;
+    width: 50%;
     transition: 0.2s ease-in;
     -webkit-transition: 0.2s ease-in;
     -moz-transition: 0.2s ease-in;
-    background-color: #FFAD40;
+    background-color: var(--secondary-color);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 40px;
+    padding-right: 50px;
 }
 
 .logo-header {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 60%;
+    width: 50%;
     transition: 0.2s ease-in;
     -webkit-transition: 0.2s ease-in;
     -moz-transition: 0.2s ease-in;
-    padding-left: 40px;
+    padding-left: 50px;
 }
 
 // Dropdown Menu
 
 #main {
     position: relative;
-    background: #06359c;
+    background: var(--primary-color);
     padding: 0;
     margin-left: 50px;
     color: #ffffff;
@@ -88,12 +88,12 @@
 }
 
 .drop li a {
-    color: #FFFFFF;
+    color: var(--white-color);
 }
 
 #marker {
     height: 6px;
-    background: #042773 !important;
+    background: var(--primary-color-blue) !important;
     position: absolute;
     bottom: 0;
     width: 120px;
@@ -108,17 +108,6 @@
     display: block;
 }
 
-// Dropdown Menu
-
-.scrolled {
-    .logo-header {
-        background-color: #fff;
-    }
-
-    .header-right {
-        background-color: #FFAD40;
-    }
-}
 
 .logo {
     width: 100px;
@@ -127,7 +116,7 @@
 .link {
     cursor: pointer;
     display: block;
-    color: #fff;
+    color: var(--white-color);
     border: 1px solid transparent;
     border-radius: 8px;
     transition: 0.2s ease-in;
@@ -136,13 +125,12 @@
     padding: 7px 16px;
 
     &:hover {
-        border: 1px solid #fff;
+        border: 1px solid var(--white-color);
     }
 }
 
 ::ng-deep {
     #menu {
-        text-transform: uppercase;
         margin-right: 100px;
         margin-left: 30px;
 
@@ -185,7 +173,7 @@
 }
 
 .nav-butn span:before {
-    background-color: #fff;
+    background-color: var(--white-color);
     bottom: 0;
     content: "";
     left: 0;
@@ -195,7 +183,7 @@
 }
 
 .nav-butn span:after {
-    background-color: #fff;
+    background-color: var(--white-color);
     bottom: 0;
     content: "";
     left: 0;
@@ -385,7 +373,7 @@
 }
 
 .open-dialog-bg {
-    background-color: #000;
+    background-color: var(--black-color);;
     opacity: 0.7;
     position: absolute;
     top: 0;
@@ -401,34 +389,19 @@
 
 .white-header {
     .logo-header {
-        background-color: #fff;
+        background-color: var(--white-color);;
     }
 
     .header-right {
-        background-color: #FFAD40;
+        background-color: var(--secondary-color);
     }
 }
-
-.grey-header {
-    .logo-header {
-        background-color: #F1EFEE;
-    }
-
-    .header-right {
-        background-color: #FFAD40;
-    }
-}
-
-// Search
-// .search-wrap-header {
-//     width: 33%;
-// }
 
 .srchwrap-inner {
     width: 100%;
     margin-right: 20px;
     align-items: center;
-    background: #FFFFFF;
+    background: var(--white-color);;
     box-shadow: 0px 1px 13px 3px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
     position: relative;
@@ -440,57 +413,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
+    background-color: var(--white-color);
 }
 
 .custom-select {
     position: relative;
     width: 30%;
-    background-color: #fff;
+    background-color: var(--white-color);
     border-radius: 15px;
-}
-
-.custom-select select {
-    width: 100%;
-    border-radius: 0px;
-    display: block;
-    cursor: pointer;
-    background-color: transparent;
-    padding-left: 10px;
-    outline: none;
-    letter-spacing: 1px;
-    border: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    line-height: 30px;
-    color: #000;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.custom-select select:focus {
-    outline: none;
-}
-
-.custom-select::after {
-    content: '\25BC';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    font-size: 14px;
-    color: #afafaf
-}
-
-.custom-select select option {
-    background-color: #ffffff;
 }
 
 .search-btn {
     border: none;
-    background: #fff;
+    background: var(--white-color);
     width: 36px;
     cursor: pointer;
     display: flex;
@@ -531,7 +466,7 @@
 
 @media(max-width : 811px) {
     .logo-header {
-        background-color: #fff;
+        background-color: var(--white-color);
         width: 100%;
     }
 
@@ -541,7 +476,7 @@
     }
 
     .header-right {
-        background-color: #FFAD40;
+        background-color: var(--secondary-color);
         width: 100%;
         padding-left: 5%;
         height: auto;

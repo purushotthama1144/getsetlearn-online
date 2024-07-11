@@ -1,0 +1,1 @@
+Build Production: ng build -c production --base-href /getsetlearn-online/

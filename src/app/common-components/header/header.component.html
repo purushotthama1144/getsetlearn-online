@@ -2,7 +2,7 @@
     <div class="header-wrap" [ngClass]="{ scrolled : scrolled}" [ngClass]="toggleMenu ? 'nav-open' : ''">
         <div class="header-inner fl-box align-items-center h-100">
             <div class="logo-header h-100">
-                <div class="logo">
+                <div class="logo" style="cursor: pointer;">
                     <a (click)="gotoHomepage()">
                         <img width="" height="" src="assets/images/GSL-Logo.png" alt="GetSetLearn" class="img-responsive">
                     </a>
@@ -12,7 +12,7 @@
                         <ul class="drop">
                             <div>
                                 @for(item of navigationMenuItems; track item.name) {
-                                    <li (click)="navigateToUrl(item.name)"><a >{{item.name}}</a></li>
+                                    <li (click)="navigateToUrl(item.name)"><a style="cursor: pointer;">{{item.name}}</a></li>
                                 }
                             </div>
                         </ul>
