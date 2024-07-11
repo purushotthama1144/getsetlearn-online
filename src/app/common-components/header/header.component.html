@@ -1,0 +1,73 @@
+<div [ngClass]="headerClass">
+    <div class="header-wrap" [ngClass]="{ scrolled : scrolled}" [ngClass]="toggleMenu ? 'nav-open' : ''">
+        <div class="header-inner fl-box align-items-center h-100">
+            <div class="logo-header h-100">
+                <div class="logo">
+                    <a (click)="gotoHomepage()">
+                        <img width="" height="" src="assets/images/GSL-Logo.png" alt="GetSetLearn" class="img-responsive">
+                    </a>
+                </div>
+                <ul id="main">
+                    <li>Courses
+                        <ul class="drop">
+                            <div>
+                                @for(item of navigationMenuItems; track item.name) {
+                                    <li (click)="navigateToUrl(item.name)"><a >{{item.name}}</a></li>
+                                }
+                            </div>
+                        </ul>
+                    </li>
+                    <div id="marker"></div>
+                </ul>
+            </div>
+            <div class="nav-butn" (click)="clickEvent()" [ngClass]="toggleMenu ? 'clicked' : ''">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div>
+            <div class="header-right h-100">
+                <div class="search-wrap-header">
+                    <div class="searchbox-wrap">
+                        <div class="w-100 fl-box srchwrap-inner">
+                            <div class="search-block">
+                                <input type="text" placeholder="Course Title or Keyword" [(ngModel)]="searchText"
+                                    [ngClass]="inputExpanded ? 'expanded' : ''">
+                                <button class="search-btn " (click)="toggleInput()">
+                                    <img src="assets/images/search.svg" class="img-responsive" alt="search"
+                                        width="30" height="30">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="menu">
+                    <div class="menu-inner-wrap clearfix">
+                        <ul class="sub-nav-wrap fl-box fl-right">
+                            <li class="nav-item" (click)="openLogin()">
+                                <span class="link">Login</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- <div class="" [ngClass]="addClass"></div>
+
+<div class="open-dialog" *ngIf="loginDialog">
+    <div class="open-dialog-position pos-rel">
+        <div class="open-dialog-bg"></div>
+        <app-login (closeClicked)="handleLoginClose($event)"></app-login>
+    </div>
+</div>
+
+<div class="open-dialog" *ngIf="signupDialog">
+    <div class="open-dialog-position pos-rel">
+        <div class="open-dialog-bg"></div>
+        <app-signup (closeClicked)="handleSignupClose($event)"></app-signup>
+    </div>
+</div> -->
