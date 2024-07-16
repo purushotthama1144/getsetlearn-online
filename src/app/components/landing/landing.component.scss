@@ -1,4 +1,14 @@
 .banner-slider {
     color: var(--white-color);
-    background: linear-gradient(to right, var(--primary-color-blue) 50%, var(--secondary-color) 50%);
+    background: linear-gradient(to right, var(--secondary-color) 50%, var(--primary-color) 50%);
+}
+
+.banner-column:first-child {
+    padding: 10px 30px;
+    padding-left: 0;
+}
+
+.banner-column:last-child {
+    padding: 10px 30px;
+    padding-right: 0;
 }

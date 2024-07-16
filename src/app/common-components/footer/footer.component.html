@@ -1,1 +1,91 @@
-<p>footer works!</p>
+<footer>
+    <div id="footer" class="footer">
+        <div class="footer-top frame">
+            <div class="container">
+                <div class="animatedParent animateOnce">
+                    <div class="animated fadeInUpShort">
+                        <div class="d-flex">
+                            @for (item of footer_top_menu; track $index) {
+                                <div class="w-30">
+                                    <div class="c-name frame-small-bottom">
+                                        <mat-icon style="margin-right: 10px;">{{item.icon}}</mat-icon> {{item.title}}
+                                    </div>
+                                    
+                                    @if (item.contact == "") {
+                                        <div class="social-media-icons">
+                                        @for (socialitem of item.contact_list; track $index) {
+                                            <a [href]="socialitem.link" target="_blank">
+                                                <mat-icon>{{socialitem.icon}}</mat-icon>
+                                            </a>
+                                            }
+                                        </div>
+                                    } 
+                                    @if(item.contact != "") {
+                                        <div class="location text-center frame-small-bottom">
+                                            @if (item.title == "Call us") {
+                                                <a href="tel:{{item.contact}}">{{item.contact}}</a>
+                                            } @else {
+                                                <a href="{{item.contact}}">{{item.contact}}</a>  
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bootom frame">
+            <div class="container">
+                <div class="animatedParent animateOnce">
+                    <div class="animated fadeInUpShort">
+                        <div class="d-flex">
+                            <div class="w-20 side-bar">
+                                <div class="footer-logo frame-medium-bottom">
+                                    <a href="/">
+                                        <img src="assets/images/footer-logo.png" alt="footer logo">
+                                    </a>
+                                </div>
+                                <div class="about-us frame-medium-bottom">
+                                    <p>Backed by the iconic Arvind Mafatlal Group with over 100 years of legacy, Get Set Learn is transforming the global education landscape by curating the K-12 learning needs on a single platform. We’re proud to be the best online learning platforms K-12.</p>
+                                </div>
+                            </div>
+                            @for (footer_item of footer_bottom_menu; track $index) {
+                                <div class="w-20 subscription-sectionc side-bar">
+                                    <div class="c-name frame-medium-bottom">{{footer_item.main_title}}</div>
+                                    <div class="wrapper">
+                                        <ul class="footer-menu">
+                                            @for (menu of footer_item.menu_list; track $index) {
+                                                <li>
+                                                    <a target="_blank" [href]="menu.link" class="nav-link nav-links2">{{menu.menu_title}}</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                            
+                            <div class="w-20 side-bar">
+                                <div class="company-details">
+                                    <div class="c-name frame-medium-bottom">Contact Us</div>
+                                    <div class="location d-flex frame-small-bottom">
+                                        <p><span style="color: #FFAD40;">MAF Technologies Private Limited</span>
+                                            <br>
+                                            Mafatlal House, 4th Floor, H.T. Parekh Marg, Backbay Reclamation.
+                                            Mumbai,
+                                            Maharashtra 400020, India
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copy-right text-center frame">
+            ©2024 <a target="_blank" routerLink="/">Get Set Learn</a>
+        </div>
+    </div>
+</footer>

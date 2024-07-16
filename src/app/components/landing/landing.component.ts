@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { GetCoursesService } from '../../service/get-courses.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule , CarouselModule],
+  imports: [CommonModule , CarouselModule , HttpClientModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
-export class LandingComponent {
+
+export class LandingComponent implements OnInit{
   isDragging: boolean = false;
   banner_data = [
     {
@@ -49,5 +52,19 @@ export class LandingComponent {
       },
 
     },
+  }
+
+  constructor(private getCoursesService:GetCoursesService ){}
+
+  ngOnInit(): void {
+    this.fetchCourses();
+  }
+
+  fetchCourses() {
+    const sizeLimit = 1000000;
+    this.getCoursesService.getCourses(sizeLimit).subscribe((val) => {
+      // debugger;
+      console.log(val)
+    })
   }
 }

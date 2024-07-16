@@ -1,21 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../service/shared-service.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule , FormsModule],
+  imports: [CommonModule , FormsModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 
 export class HeaderComponent {
   scrolled: boolean = false;
-  loginDialog: boolean = false;
-  signupDialog: boolean = false;
   toggleMenu: boolean = false;
   showFiller = false;
   headerClass: any;
@@ -24,6 +23,8 @@ export class HeaderComponent {
   inputExpanded: boolean = false;
   navigationUrl = "";
   navigationName:string = "";
+  @Output("sendOverlay") sendOverlay = new EventEmitter<any>();
+  toggleOverlay:boolean = false;
   
   navigationMenuItems = [
     {
@@ -55,15 +56,10 @@ export class HeaderComponent {
     },
   ]
 
-  constructor(public router:Router , private sharedService: SharedService) { }
+  constructor(public router:Router , private sharedService: SharedService) {}
 
   ngOnInit(): void {
-
-  }
-
-  gotoHomepage() {
-    console.log("clicked")
-    this.router.navigate(['/'])
+    
   }
 
   navigateToUrl(menu: any) {
@@ -78,6 +74,11 @@ export class HeaderComponent {
   
   clickEvent(){
     this.toggleMenu = !this.toggleMenu;       
+    if(this.toggleMenu) {
+      this.sendOverlay.emit("background-overlay");
+    } else {
+      this.sendOverlay.emit("");
+    }
   }
 
   removeClass(){
@@ -85,8 +86,7 @@ export class HeaderComponent {
   }
 
   openLogin() {
-    this.loginDialog = true;
-    this.signupDialog = false;
+    this.router.navigate(['https://cartlogin.getsetlearn.online/user/login?redirect=https:%2F%2Fcartlogin.getsetlearn.online%2Foauth%2Fauth%3Fclient_id%3DxDpc3GkZzfzBgwANYWlOEZ0is%26client_secret%3DVPG3J2ZxOWLZ0AyFxCk0woKLT%26redirect_uri%3Dhttps:%2F%2Fwww.getsetlearn.online%2Fcomplete%2Fauth%2F%26response_type%3Dcode%26scope%3Dpublic_profile'])
   }
   
   toggleInput() {
@@ -99,5 +99,10 @@ export class HeaderComponent {
   
   searchContent() {
     console.log('Searching for:', this.searchText);
+  }
+
+  ngOnDestroy() {
+    this.toggleMenu = false;
+    this.sendOverlay.emit("");
   }
 }

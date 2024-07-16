@@ -2,8 +2,8 @@
     <div class="header-wrap" [ngClass]="{ scrolled : scrolled}" [ngClass]="toggleMenu ? 'nav-open' : ''">
         <div class="header-inner fl-box align-items-center h-100">
             <div class="logo-header h-100">
-                <div class="logo" style="cursor: pointer;">
-                    <a (click)="gotoHomepage()">
+                <div class="logo">
+                    <a routerLink="/">
                         <img width="" height="" src="assets/images/GSL-Logo.png" alt="GetSetLearn" class="img-responsive">
                     </a>
                 </div>
@@ -12,7 +12,7 @@
                         <ul class="drop">
                             <div>
                                 @for(item of navigationMenuItems; track item.name) {
-                                    <li (click)="navigateToUrl(item.name)"><a style="cursor: pointer;">{{item.name}}</a></li>
+                                    <li (click)="navigateToUrl(item.name)"><a>{{item.name}}</a></li>
                                 }
                             </div>
                         </ul>
@@ -20,7 +20,7 @@
                     <div id="marker"></div>
                 </ul>
             </div>
-            <div class="nav-butn" (click)="clickEvent()" [ngClass]="toggleMenu ? 'clicked' : ''">
+            <div class="nav-butn" (click)="clickEvent();" [ngClass]="toggleMenu ? 'clicked' : ''">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -28,6 +28,13 @@
                 <span class="icon-bar"></span>
             </div>
             <div class="header-right h-100">
+                <div class="fixed_menu" [ngClass]="toggleMenu ? 'show-header' : ''">
+                    <ul>
+                        <li>
+                            <a routerLink="/">Home</a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="search-wrap-header">
                     <div class="searchbox-wrap">
                         <div class="w-100 fl-box srchwrap-inner">
@@ -44,11 +51,11 @@
                 </div>
                 <div id="menu">
                     <div class="menu-inner-wrap clearfix">
-                        <ul class="sub-nav-wrap fl-box fl-right">
-                            <li class="nav-item" (click)="openLogin()">
+                        <div class="sub-nav-wrap fl-box fl-right">
+                            <a href="https://cartlogin.getsetlearn.online/user/login?redirect=https:%2F%2Fcartlogin.getsetlearn.online%2Foauth%2Fauth%3Fclient_id%3DxDpc3GkZzfzBgwANYWlOEZ0is%26client_secret%3DVPG3J2ZxOWLZ0AyFxCk0woKLT%26redirect_uri%3Dhttps:%2F%2Fwww.getsetlearn.online%2Fcomplete%2Fauth%2F%26response_type%3Dcode%26scope%3Dpublic_profile" class="nav-item">
                                 <span class="link">Login</span>
-                            </li>
-                        </ul>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

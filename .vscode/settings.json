@@ -1,4 +1,5 @@
 {
     "editor.defaultColorDecorators": true,
-    "workbench.colorTheme": "Abyss"
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.activityBar.iconClickBehavior": "toggle"
 }

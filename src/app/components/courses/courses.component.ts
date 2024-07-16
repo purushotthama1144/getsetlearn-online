@@ -13,20 +13,22 @@ import { Subscription } from 'rxjs';
 export class CoursesComponent implements OnInit {
   navigationUrl: string = "";
   navigationName: string = "";
-  private subscriptionUrl: Subscription = new Subscription;
-  private subscriptionName: Subscription = new Subscription;
+  subscriptionUrl: Subscription = new Subscription;
+  subscriptionName: Subscription = new Subscription;
   
   constructor(private sharedService: SharedService) {}
 
   ngOnInit(): void {
+    this.getUrl();
+  }
+
+  getUrl() {
     this.subscriptionUrl = this.sharedService.currentNavigationUrl.subscribe(url => {
       this.navigationUrl = url;
-      console.log("Courses", this.navigationUrl);
     });
     
     this.subscriptionName = this.sharedService.currentNavigationMenu.subscribe(name => {
       this.navigationName = name;
-      console.log("Courses", this.navigationName);
     });
   }
 
