@@ -1,6 +1,6 @@
 .banner-slider {
     color: var(--white-color);
-    background: linear-gradient(to right, var(--secondary-color) 50%, var(--primary-color) 50%);
+    background: linear-gradient(to right, var(--secondary-color) 50%, var(--white-color) 50%);
 }
 
 .banner-column:first-child {
@@ -11,4 +11,220 @@
 .banner-column:last-child {
     padding: 10px 30px;
     padding-right: 0;
+}
+
+.partner-image {
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(75, 131, 252, 0.1);
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.partner-image img {
+    width: inherit !important;
+    height: revert-layer;
+}
+
+.partner-image:hover {
+    -webkit-filter: none;
+    filter: none;
+}
+
+::ng-deep {
+
+    .partnerSLider .owl-prev,
+    .partnerSLider .owl-next {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--secondary-color) !important;
+        border-radius: 50% !important;
+        padding: 4px !important;
+        margin: 0 !important;
+    }
+
+    .partnerSLider .owl-next {
+        right: 0;
+        left: auto;
+        background: var(--secondary-color) !important;
+    }
+
+    .arrow {
+        width: 30px;
+        height: 30px;
+        display: block;
+        position: relative;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    .arrow-left {
+        background-image: url(../../../assets/images/left.webp);
+    }
+
+    .arrow-right {
+        background-image: url(../../../assets/images/right.webp);
+    }
+
+    .owl-theme .owl-nav {
+        margin: 0;
+    }
+
+    .course-list .owl-nav {
+        position: absolute;
+        top: -92px;
+        right: -1px;
+    }
+}
+
+.single-btn {
+    margin: 0 5px;
+    font-size: var(--font-size-12);
+}
+
+.filter-buttons-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-list-single {
+    // width: calc(33.33% - 50px);
+    // margin: 20px 20px;
+    background: var(--white-color);
+}
+
+.course-list {
+    // display: flex;
+    // flex-wrap: wrap;
+    position: relative;
+}
+
+.img-responsive {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-wraped {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.card-image {
+    position: relative;
+    height: 220px;
+}
+
+.card-image .card-title {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    margin: 0;
+    padding: 5px 5px;
+    color: var(--black-color);
+    font-size: var(--font-size-14);
+    background: var(--white-color);
+    border-radius: 5px 5px 5px 5px;
+}
+
+.card-content {
+    position: relative;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 0 0 2px 2px;
+    background-clip: padding-box;
+}
+
+.card-content .listingLocation {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.card-content .listingLocation .mat-icon {
+    margin-right: 5px;
+    font-size: var(--font-size-18);
+    width: 18px;
+    height: 18px;
+}
+
+.card-action {
+    padding: 10px 15px;
+    border-top: 1px solid rgba(160, 160, 160, .2);
+}
+
+.listingInfo {
+    position: relative;
+}
+
+.listingInfo .propertyStats {
+    margin-bottom: 15px;
+}
+
+.listingLocation {
+    font-size: 13px;
+}
+
+.priceText {
+    margin-bottom: 0;
+    font-size: var(--font-size-14);
+}
+
+.session-certification {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.course-cost {
+    margin: 15px 0;
+    font-size: var(--font-size-20);
+    font-weight: 500;
+}
+
+.popup-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 1000;
+}
+
+.popup-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.popup-content button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+}
+
+.popup-content button:hover {
+    background-color: #0056b3;
 }

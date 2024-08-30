@@ -1,4 +1,4 @@
-<owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging">
+<owl-carousel-o [options]="customBanner" (dragging)="isDragging = $event.dragging">
     @for(item of banner_data; track item.card_logo_image_path) {
     <ng-container>
         <ng-template carouselSlide>
@@ -18,6 +18,11 @@
                                 }
                             </ul>
                         </div>
+                        <div class="register-button spacer-medium">
+                            <a mat-raised-button
+                                href="https://cartlogin.getsetlearn.online/user/login?redirect=https:%2F%2Fcartlogin.getsetlearn.online%2Foauth%2Fauth%3Fclient_id%3DxDpc3GkZzfzBgwANYWlOEZ0is%26client_secret%3DVPG3J2ZxOWLZ0AyFxCk0woKLT%26redirect_uri%3Dhttps:%2F%2Fwww.getsetlearn.online%2Fcomplete%2Fauth%2F%26response_type%3Dcode%26scope%3Dpublic_profile"
+                                class="btn-pink">Register for Free</a>
+                        </div>
                     </div>
                     <div class="banner-column w-50">
                         <div class="banner-image">
@@ -30,3 +35,106 @@
     </ng-container>
     }
 </owl-carousel-o>
+<div class="container">
+    <div class="partnerSLider">
+        <owl-carousel-o [options]="customPartner" (dragging)="isDragging = $event.dragging">
+            @for(item of partner_data; track $index) {
+            <ng-container>
+                <ng-template carouselSlide>
+                    <div class="partner-image">
+                        <img [src]="item.image" [alt]="item.name" width="120px" height="72px">
+                    </div>
+                </ng-template>
+            </ng-container>
+            }
+        </owl-carousel-o>
+    </div>
+</div>
+<div class="spacer-large"></div>
+<div class="container">
+    <div class="section-title text-center">
+        <h2>
+            Our courses
+        </h2>
+        <p>
+            Pick courses designed for your grade and your board
+        </p>
+    </div>
+    <div class="spacer-large"></div>
+    <div class="filter-block">
+        <div class="filter-buttons-row">
+            @for (grade of filterGrades; track $index) {
+            <button mat-raised-button class="single-btn">{{grade}}</button>
+            }
+        </div>
+    </div>
+    <div class="spacer-large"></div>
+    <div class="course-list-wrapper">
+        <div class="course-list">
+            <owl-carousel-o [options]="courseListing" (dragging)="isDragging = $event.dragging">
+                @for (item of allCourses; track $index) {
+
+                <ng-container>
+                    <ng-template carouselSlide>
+                        <div class="course-list-single">
+                            <div class="card-image">
+                                <img class="img-responsive" [src]="item.data.image_url" alt="">
+                                <span class="card-title">
+                                    {{item.data.content_partner}}
+                                </span>
+                            </div>
+                            <div class="card-content">
+                                <div class="listingInfo">
+                                    <div class="propertyStats">
+                                        <p class="priceText"> {{item.data.category}}</p>
+                                    </div>
+                                    <div class="vcard">
+                                        <h4>Your Listing Text Will be Replaced with This Text</h4>
+                                        <div class="session-certification">
+                                            <p class="listingLocation">
+                                                <mat-icon>alarm</mat-icon>{{item.data.course_duration}}</p>
+                                            @if (item.data.certificate == true) {
+                                            <p class="listingLocation"><mat-icon>stars</mat-icon>Certification Available
+                                            </p>
+                                            }
+                                        </div>
+                                        <div class="course-cost text-right">
+                                            @if (item.data.course_price == 0) {
+                                            FREE
+                                            }
+                                            @else {
+                                            ₹{{item.data.course_price}}
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <div class="text-right">
+                                    <a (click)="shareUrl(item.data.id)"
+                                        target="new_blank"><mat-icon>share</mat-icon></a>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                }
+
+            </owl-carousel-o>
+        </div>
+    </div>
+    <div class="spacer-large"></div>
+
+
+
+    <div *ngIf="isPopupVisible" class="popup-box">
+        <div class="popup-content">
+            <h3>Share Course</h3>
+            <input type="text" [value]="courseUrl" readonly>
+            <!-- <button (click)="copyToClipboard()">Copy to Clipboard</button> -->
+            <button (click)="copyToClipboard()">
+                {{ isCopied ? 'Copied' : 'Copy' }}
+              </button>
+            <button (click)="closePopup()">Close</button>
+        </div>
+    </div>

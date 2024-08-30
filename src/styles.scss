@@ -1,18 +1,19 @@
 :root {
     --primary-color: #06359c; /* Deep Blue */
-    --primary-color-blue: #042773; /* Deep Blue */
+    --primary-color-blue: #040773; /* Deep Blue */
     --secondary-color: #FFAD40; /* Bright Orange */
     --white-color: #ffffff;
     --black-color: #000000;
+    --pink-color: #DE00A5;
     --font-size-12: 12px;
     --font-size-14: 14px;
     --font-size-16: 16px;
     --font-size-18: 18px;
     --font-size-20: 20px;
     --font-size-22: 22px;
-    --font-size-26: 26px;
-    --font-size-32: 32px;
-    --font-size-42: 42px;
+    --font-size-24: 24px;
+    --font-size-30: 30px;
+    --font-size-40: 40px;
 }
 
 /*** Base SCSS Start ***/
@@ -110,6 +111,7 @@ body {
     letter-spacing: 1px;
     -webkit-text-size-adjust: none;
     scroll-behavior: smooth;
+    background: linear-gradient(262deg, rgba(6, 149, 211, 0.12) 6.33%, rgba(247, 201, 246, 0.50) 93.67%, rgba(247, 201, 246, 0.50) 93.67%) !important;
 }
 
 b,
@@ -119,7 +121,7 @@ strong {
 }
 
 h1 {
-    font-size: var(--font-size-42);
+    font-size: var(--font-size-40);
     line-height: 48px;
     font-weight: 700;
     font-style: normal;
@@ -127,7 +129,7 @@ h1 {
 }
 
 h2 {
-    font-size: var(--font-size-32);
+    font-size: var(--font-size-30);
     font-weight: 700;
     letter-spacing: 1px;
     font-style: normal;
@@ -136,7 +138,7 @@ h2 {
 }
 
 h3 {
-    font-size: var(--font-size-26);
+    font-size: var(--font-size-24);
     margin-bottom: 10px;
     line-height: 28px;
 
@@ -283,6 +285,7 @@ input[type="radio"] {
 
 .d-flex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .v-top {
@@ -401,12 +404,6 @@ input[type="radio"] {
     box-shadow: 0px 1px 13px 3px rgba(0, 0, 0, 0.08);
     -webkit-box-shadow: 0px 1px 13px 3px rgba(0, 0, 0, 0.08);
     -moz-box-shadow: 0px 1px 13px 3px rgba(0, 0, 0, 0.08);
-
-    span.icon {
-        width: 15px;
-        display: inline-block;
-        margin-right: 5px;
-    }
 }
 
 .btn-orange {
@@ -442,6 +439,10 @@ input[type="radio"] {
     border: 1px solid var(--primary-color-blue);
 }
 
+.btn-pink {
+    background: var(--pink-color) !important;
+    color: var(--white-color) !important;
+}
 .text-left {
     text-align: left;
 }
@@ -481,10 +482,6 @@ input[type="radio"] {
         width: 100%;
     }
     
-    .frame {
-        padding: 30px 0;
-    }
-
 }
 
 @media (max-width: 468px) {
