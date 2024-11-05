@@ -1,4 +1,21 @@
 <footer>
+    <div class="subcription-block">
+        <div class="subcription-block-inner">
+            <div class="subcription-title">
+                Subscribe to our updates
+            </div>
+            <div class="subcription-desc">
+                Be the first to hear about new courses, offers, or anything else we may introduce.
+            </div>
+
+            <div class="wrapper__content">
+                <form>
+                    <input type="email" placeholder="enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="footer" class="footer">
         <div class="footer-top frame">
             <div class="container">
@@ -6,30 +23,30 @@
                     <div class="animated fadeInUpShort">
                         <div class="d-flex">
                             @for (item of footer_top_menu; track $index) {
-                                <div class="w-30">
-                                    <div class="c-name frame-small-bottom">
-                                        <mat-icon style="margin-right: 10px;">{{item.icon}}</mat-icon> {{item.title}}
-                                    </div>
-                                    
-                                    @if (item.contact == "") {
-                                        <div class="social-media-icons">
-                                        @for (socialitem of item.contact_list; track $index) {
-                                            <a [href]="socialitem.link" target="_blank">
-                                                <mat-icon>{{socialitem.icon}}</mat-icon>
-                                            </a>
-                                            }
-                                        </div>
-                                    } 
-                                    @if(item.contact != "") {
-                                        <div class="location text-center frame-small-bottom">
-                                            @if (item.title == "Call us") {
-                                                <a href="tel:{{item.contact}}">{{item.contact}}</a>
-                                            } @else {
-                                                <a href="{{item.contact}}">{{item.contact}}</a>  
-                                            }
-                                        </div>
+                            <div class="w-30">
+                                <div class="c-name frame-small-bottom">
+                                    <mat-icon style="margin-right: 10px;">{{item.icon}}</mat-icon> {{item.title}}
+                                </div>
+
+                                @if (item.contact == "") {
+                                <div class="social-media-icons">
+                                    @for (socialitem of item.contact_list; track $index) {
+                                    <a [href]="socialitem.link" target="_blank">
+                                        <mat-icon>{{socialitem.icon}}</mat-icon>
+                                    </a>
                                     }
                                 </div>
+                                }
+                                @if(item.contact != "") {
+                                <div class="location text-center frame-small-bottom">
+                                    @if (item.title == "Call us") {
+                                    <a href="tel:{{item.contact}}">{{item.contact}}</a>
+                                    } @else {
+                                    <a href="{{item.contact}}">{{item.contact}}</a>
+                                    }
+                                </div>
+                                }
+                            </div>
                             }
                         </div>
                     </div>
@@ -48,24 +65,28 @@
                                     </a>
                                 </div>
                                 <div class="about-us frame-medium-bottom">
-                                    <p>Backed by the iconic Arvind Mafatlal Group with over 100 years of legacy, Get Set Learn is transforming the global education landscape by curating the K-12 learning needs on a single platform. We’re proud to be the best online learning platforms K-12.</p>
+                                    <p>Backed by the iconic Arvind Mafatlal Group with over 100 years of legacy, Get Set
+                                        Learn is transforming the global education landscape by curating the K-12
+                                        learning needs on a single platform. We’re proud to be the best online learning
+                                        platforms K-12.</p>
                                 </div>
                             </div>
                             @for (footer_item of footer_bottom_menu; track $index) {
-                                <div class="w-20 subscription-sectionc side-bar">
-                                    <div class="c-name frame-medium-bottom">{{footer_item.main_title}}</div>
-                                    <div class="wrapper">
-                                        <ul class="footer-menu">
-                                            @for (menu of footer_item.menu_list; track $index) {
-                                                <li>
-                                                    <a target="_blank" [href]="menu.link" class="nav-link nav-links2">{{menu.menu_title}}</a>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
+                            <div class="w-20 subscription-sectionc side-bar">
+                                <div class="c-name frame-medium-bottom">{{footer_item.main_title}}</div>
+                                <div class="wrapper">
+                                    <ul class="footer-menu">
+                                        @for (menu of footer_item.menu_list; track $index) {
+                                        <li>
+                                            <a target="_blank" [href]="menu.link"
+                                                class="nav-link nav-links2">{{menu.menu_title}}</a>
+                                        </li>
+                                        }
+                                    </ul>
                                 </div>
+                            </div>
                             }
-                            
+
                             <div class="w-20 side-bar">
                                 <div class="company-details">
                                     <div class="c-name frame-medium-bottom">Contact Us</div>

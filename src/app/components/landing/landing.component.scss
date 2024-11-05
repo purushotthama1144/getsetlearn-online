@@ -79,8 +79,8 @@
 
     .course-list .owl-nav {
         position: absolute;
-        top: -92px;
-        right: -1px;
+        top: -110px;
+        right: 0;
     }
 }
 
@@ -89,16 +89,21 @@
     font-size: var(--font-size-12);
 }
 
-.filter-buttons-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.scrollmenu button {
+    display: inline-block;
 }
 
 .course-list-single {
     // width: calc(33.33% - 50px);
     // margin: 20px 20px;
+    position: relative;
     background: var(--white-color);
 }
 
@@ -227,4 +232,89 @@
 
 .popup-content button:hover {
     background-color: #0056b3;
+}
+
+.filter-outer-block {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter_grades {
+    width: 160px;
+    margin-right: 20px;
+}
+
+.filter-block {
+    width: 78%;
+}
+
+.mat-mdc-form-field {
+    width: 100%;
+}
+
+.mat-mdc-select {
+    font-size: 12px;
+}
+
+.mat-mdc-option {
+    font-size: 12px;
+    min-height: 30px;
+}
+
+::ng-deep {
+    .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
+}
+
+.c-d-btn-block {
+    text-align: center;
+    margin: auto;
+    width: 100%;
+
+    a {
+        font-weight: 500;
+        font-size: 14px;
+        &:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+    }
+}
+
+.course-detail-overlay {
+    background-color: var(--black-color);
+    opacity: 0.5;
+    width: 100%;
+    height: calc(100% - 50px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.course-detail-inner {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 5;
+    margin-top: -50px;
+}
+
+.course-detail {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.course-list-single {
+    &:hover {
+        .course-detail {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
 }

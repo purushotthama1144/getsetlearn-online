@@ -4,6 +4,7 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from '../../service/shared-service.service';
 import { filter } from 'rxjs';
+import { GetCoursesService } from '../../service/get-courses.service';
 
 @Component({
   selector: 'app-header',
@@ -25,13 +26,15 @@ export class HeaderComponent {
   navigationName:string = "";
   @Output("sendOverlay") sendOverlay = new EventEmitter<any>();
   toggleOverlay:boolean = false;
+  allCourses:any = [];
+  categories:any = [];
   
   navigationMenuItems = [
     {
       name:"All Courses",
     },
     {
-      name:"Industrial Expereince-Career",
+      name:"Industrial Expereince - Career",
     },
     {
       name:"Test Prep",
@@ -56,10 +59,24 @@ export class HeaderComponent {
     },
   ]
 
-  constructor(public router:Router , private sharedService: SharedService) {}
+  constructor(public router:Router , private sharedService: SharedService , private getCoursesService: GetCoursesService) {}
 
   ngOnInit(): void {
-    
+    // this.fetchCourseCategory()
+  }
+
+  fetchCourseCategory() {
+    const sizeLimit = 1000000;
+
+    this.getCoursesService.getCourseList().subscribe((val) => {
+      this.allCourses = val.results;
+      console.log("All Courses", this.allCourses);
+
+      this.categories = [...new Set(this.allCourses.flatMap((item:any) => item.data.category))];
+
+      console.log("Course Category", this.categories);
+     
+    })
   }
 
   navigateToUrl(menu: any) {

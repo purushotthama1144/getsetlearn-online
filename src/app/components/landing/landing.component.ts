@@ -4,26 +4,43 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { GetCoursesService } from '../../service/get-courses.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule , CarouselModule , HttpClientModule , MatButtonModule , MatIconModule],
+  imports: [CommonModule , CarouselModule , HttpClientModule , MatButtonModule , MatIconModule , MatSelectModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
 
 export class LandingComponent implements OnInit{
   isDragging: boolean = false;
-  filterGrades:any = [];
+  filterCourses:any = [];
   ageGroups:any = [];
   filterLanguages:any;
-  allCourses:any = [];
+  allCourses:any[] = [];
+  defaultCourses: any[] = [];
   courseUrl: string = '';
   isPopupVisible: boolean = false;
   isCopied: boolean = false;
+  
+  
+  gradeCategories: { [key: string]: string[] } = {
+    'Grade 9-12': ["Class 9", "Class 10", "Class 11", "Class 12"],
+    'Grade 6-8': ["Class 6", "Class 7", "Class 8"],
+    'Grade 3-5': ["Class 3", "Class 4", "Class 5"],
+    'Pre-primary to Grade 2': ["Class 1", "Class 2"]
+  };
 
+  selectedGradeCategory: string = "";
+  filteredGrades: string[] = [];
+
+  grades = [
+    'Pre-primary to Grade 2', 'Grade 3-5' , 'Grade 6-8', 'Grade 9-12'
+  ]
 
   imageString = 'https://www.getsetlearn.school/'
 
@@ -183,7 +200,7 @@ export class LandingComponent implements OnInit{
     },
   }
 
-  constructor(private getCoursesService:GetCoursesService){}
+  constructor(private getCoursesService:GetCoursesService , private router: Router){}
 
   ngOnInit(): void {
     this.fetchCourses();
@@ -197,15 +214,42 @@ export class LandingComponent implements OnInit{
     // })
 
     this.getCoursesService.getCourseList().subscribe((val) => {
-      this.allCourses = val.results;
-      console.log(this.allCourses);
-
-      this.ageGroups = [...new Set(this.allCourses.flatMap((item:any) => item.data.age_group))];
-
-      console.log(this.ageGroups);
-      this.filterGrades = Object.keys(val.facets.content_type.terms);
-      console.log(this.filterGrades);
+      this.defaultCourses = val.results;
+      this.allCourses = [...this.defaultCourses];
+      this.ageGroups = [...new Set(this.allCourses.flatMap((item: any) => item.data.age_group))];
+      this.filterCourses = Object.keys(val.facets.content_type.terms);
     })
+  }
+
+  onGradeCategoryChange(selectedCategory: string) {
+    this.selectedGradeCategory = selectedCategory;
+    this.filteredGrades = this.gradeCategories[selectedCategory] || [];
+    console.log("Filtered Grades:", this.filteredGrades);
+    if (selectedCategory) {
+      this.allCourses = this.defaultCourses.filter((course: any) => 
+        course.data.grade.includes(this.filteredGrades)
+      // console.log(course.data.grade)
+      );
+    } else {
+      this.allCourses = [...this.defaultCourses];
+    }
+    console.log(`Filtered Courses for type "${selectedCategory}":`, this.allCourses);
+  }
+
+  filterCourse(selectedType: string) {
+    if (selectedType) {
+      this.allCourses = this.defaultCourses.filter((course: any) => 
+        course.data.content_type.includes(selectedType)
+      );
+    } else {
+      this.allCourses = [...this.defaultCourses];
+    }
+    console.log(`Filtered Courses for type "${selectedType}":`, this.allCourses);
+  }
+
+  gotoCourseDetail(courseId:any) {
+    console.log("Single course detail", courseId);
+    this.router.navigate(['/courses', courseId]);
   }
 
   shareUrl(id:any) {

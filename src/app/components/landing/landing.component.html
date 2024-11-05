@@ -61,11 +61,24 @@
         </p>
     </div>
     <div class="spacer-large"></div>
-    <div class="filter-block">
-        <div class="filter-buttons-row">
-            @for (grade of filterGrades; track $index) {
-            <button mat-raised-button class="single-btn">{{grade}}</button>
-            }
+    <div class="filter-outer-block">
+        <div class="filter_grades">  
+            <mat-form-field appearance="outline">
+                <mat-label>Grade</mat-label>
+                <mat-select (selectionChange)="onGradeCategoryChange($event.value)">
+                    <mat-option *ngFor="let category of gradeCategories | keyvalue" [value]="category.key">
+                        {{ category.key }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+               
+        </div>
+        <div class="filter-block">
+            <div class="filter-buttons-row scrollmenu">
+                @for (course of filterCourses; track $index) {
+                <button mat-raised-button class="single-btn" (click)="filterCourse(course)">{{course}}</button>
+                }
+            </div>
         </div>
     </div>
     <div class="spacer-large"></div>
@@ -77,6 +90,24 @@
                 <ng-container>
                     <ng-template carouselSlide>
                         <div class="course-list-single">
+                            <div class="course-detail">
+                                <div class="course-detail-overlay"></div>
+                                <div class="course-detail-inner">
+                                    <div class="c-d-btn-block">
+                                        <a mat-raised-button class="single-btn" (click)="gotoCourseDetail(item.data.id)">Course Detail</a>
+                                        <br>
+                                        <br>
+                                        <a mat-raised-button class="single-btn">
+                                            @if (item.data.course_price == 0) {
+                                                Enroll Now
+                                            }
+                                            @else {
+                                                Buy Now
+                                            }
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card-image">
                                 <img class="img-responsive" [src]="item.data.image_url" alt="">
                                 <span class="card-title">
@@ -124,8 +155,6 @@
         </div>
     </div>
     <div class="spacer-large"></div>
-
-
 
     <div *ngIf="isPopupVisible" class="popup-box">
         <div class="popup-content">
